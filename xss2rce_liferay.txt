@@ -1,4 +1,5 @@
 // In the case admin visits affected page
+// dirty poc
 
 //confirm(1337);
 //var pAuth = Liferay.authToken;
